@@ -8,10 +8,13 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd db
-          docker build -t 012751250483.dkr.ecr.us-east-1.amazonaws.com/shipping-db-image .
-        name: Docker Build
-      - run: docker push 012751250483.dkr.ecr.us-east-1.amazonaws.com/shipping-db-image
-        name: Docker push
+      - run: cd db
+      - name: Docker Build
+        run: docker build --load -t shipping-db-image .
+      - name: Tag Image
+        run: docker tag shipping-db-image:latest roboshop5427.azurecr.io/shipping-db-image:latest
+      - name: Push Image
+        run: docker push roboshop5427.azurecr.io/shipping-db-image:latest
+
 ####
+
