@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: cd db
       - name: Docker Build
-        run: docker build --load -t shipping-db-image .
+        run: docker build --load -t shipping-db-image ./db
       - name: Tag Image
         run: docker tag shipping-db-image:latest roboshop5427.azurecr.io/shipping-db-image:latest
       - name: Push Image
